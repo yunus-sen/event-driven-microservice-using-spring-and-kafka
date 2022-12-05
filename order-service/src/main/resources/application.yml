@@ -1,2 +1,13 @@
 server:
   port: 8080
+
+kafka:
+  server:
+    addresses: localhost:9092
+  topics:
+    mail: "mail-sender"
+
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: ${kafka.server.addresses}

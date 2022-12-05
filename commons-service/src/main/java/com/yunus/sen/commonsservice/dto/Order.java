@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class Order {
     private long id;
     private int Quatity;
-    private double prive;
+    private double price;
 
 }
