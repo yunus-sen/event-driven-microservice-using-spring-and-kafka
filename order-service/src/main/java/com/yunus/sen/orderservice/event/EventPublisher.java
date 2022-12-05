@@ -1,7 +1,7 @@
 package com.yunus.sen.orderservice.event;
 
-import com.yunus.sen.commonsservice.dto.OrderEvent;
+import com.yunus.sen.commonsservice.Event;
 
 public interface EventPublisher {
-    public void send( OrderEvent event);
+    void send(Event event);
 }

@@ -11,6 +11,6 @@ import org.springframework.context.annotation.Configuration;
 @NoArgsConstructor
 @Configuration
 @ConfigurationProperties(prefix = "kafka.topics")
-public class KafkaProperties {
+public class KafkaTopicProperties {
     private String mail;
 }
