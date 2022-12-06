@@ -1,2 +1,22 @@
 server:
   port: 8081
+
+kafka:
+  enabled: true
+  server:
+    addresses: localhost:9092
+  topics:
+    mail: "mail-sender"
+  consumer:
+    concurrency: 2
+  record-limit: 3
+  record-limit-reset-period: '*/1 * * * * *'
+
+spring:
+  application:
+    name: "mail-service"
+  kafka:
+    consumer:
+      bootstrap-servers: "${kafka.server.addresses}"
+      group-id: "${spring.application.name}"
+      auto-offset-reset: latest

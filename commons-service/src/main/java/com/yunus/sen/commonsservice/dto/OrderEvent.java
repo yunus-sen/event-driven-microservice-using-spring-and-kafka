@@ -11,7 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class OrderEvent implements Event {
+    private String owner;
     private OrderStatus status;
     private String message;
     private Order order;
+    private int counter;
+
+    @Override
+    public Integer getCounter() {
+        return counter;
+    }
 }

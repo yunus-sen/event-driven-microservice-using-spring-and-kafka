@@ -7,3 +7,7 @@ kafka:
     addresses: localhost:9092
   topics:
     mail: "mail-sender"
+
+spring:
+  application:
+    name: "order-service"

@@ -39,7 +39,7 @@ public class KafkaEventPublisher implements EventPublisher {
 
         @Override
         public void onSuccess(SendResult<String, Event> result) {
-            log.info("Sended event to topic. Event: {} " + result.getProducerRecord().value());
+            log.info("producer: {} " + result.getProducerRecord().value().getCounter());
         }
 
         private static EventFuture getEventFuture() {

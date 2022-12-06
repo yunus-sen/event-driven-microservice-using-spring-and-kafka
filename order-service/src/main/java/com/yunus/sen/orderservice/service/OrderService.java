@@ -14,10 +14,12 @@ public class OrderService {
     private final EventPublisher kafkaEventPublisher;
 
     public void createOrder(Order order) {
-        kafkaEventPublisher.send(OrderEvent.builder()
-                .order(order)
-                .message("created order.")
-                .status(OrderStatus.IN_PROGRESS)
-                .build());
+        for (int i = 0; i < 3; i++) {
+            kafkaEventPublisher.send(OrderEvent.builder()
+                    .order(order)
+                    .status(OrderStatus.IN_PROGRESS)
+                    .counter(i)
+                    .build());
+        }
     }
 }

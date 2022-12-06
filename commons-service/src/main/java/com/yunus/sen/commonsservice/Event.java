@@ -7,4 +7,6 @@ public interface Event {
     default String getEventId() {
         return UUID.randomUUID().toString();
     }
+
+    Integer getCounter();
 }
