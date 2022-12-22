@@ -1,6 +1,7 @@
 package com.yunus.sen.orderservice.event;
 
 import com.yunus.sen.commonsservice.Event;
+import com.yunus.sen.commonsservice.dto.OrderEvent;
 import com.yunus.sen.orderservice.configuration.KafkaTopicProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,18 +19,18 @@ import java.util.Objects;
 @Slf4j
 public class KafkaEventPublisher implements EventPublisher {
 
-    private final KafkaTemplate<String, Event> kafkaTemplate;
+    private final KafkaTemplate<String, OrderEvent> kafkaTemplate;
 
     private final KafkaTopicProperties kafkaTopicProperties;
 
     @Override
-    public void send(Event event) {
-        ListenableFuture<SendResult<String, Event>> future = kafkaTemplate.send(kafkaTopicProperties.getMail(), event.getEventId(), event);
+    public void send(OrderEvent event) {
+        ListenableFuture<SendResult<String, OrderEvent>> future = kafkaTemplate.send(kafkaTopicProperties.getMail(), event.getEventId(), event);
         future.addCallback(EventFuture.getEventFuture());
     }
 
 
-    static class EventFuture implements ListenableFutureCallback<SendResult<String, Event>> {
+    static class EventFuture implements ListenableFutureCallback<SendResult<String, OrderEvent>> {
         private static EventFuture eventFuture;
 
         @Override
@@ -38,7 +39,7 @@ public class KafkaEventPublisher implements EventPublisher {
         }
 
         @Override
-        public void onSuccess(SendResult<String, Event> result) {
+        public void onSuccess(SendResult<String, OrderEvent> result) {
             log.info("producer: {} " + result.getProducerRecord().value().getCounter());
         }
 

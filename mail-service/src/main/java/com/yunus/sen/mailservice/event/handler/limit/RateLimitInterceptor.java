@@ -1,6 +1,7 @@
 package com.yunus.sen.mailservice.event.handler.limit;
 
 import com.yunus.sen.commonsservice.Event;
+import com.yunus.sen.commonsservice.dto.OrderEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -17,7 +18,7 @@ import java.util.concurrent.Semaphore;
 @Service
 @RequiredArgsConstructor
 @ConditionalOnProperty(value = "kafka.enabled", matchIfMissing = true)
-public class RateLimitInterceptor implements RecordInterceptor<String, Event> {
+public class RateLimitInterceptor implements RecordInterceptor<String, OrderEvent> {
 
     @Value("${kafka.record-limit}")
     private Integer recordLimit;
@@ -44,7 +45,7 @@ public class RateLimitInterceptor implements RecordInterceptor<String, Event> {
     }
 
     @Override
-    public ConsumerRecord<String, Event> intercept(ConsumerRecord<String, Event> record) {
+    public ConsumerRecord<String, OrderEvent> intercept(ConsumerRecord<String, OrderEvent> record) {
         try {
 
             log.info("intercep counter : {}", record.value().getCounter());

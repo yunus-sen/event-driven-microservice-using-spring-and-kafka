@@ -18,7 +18,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping(path = "/orders")
-    public ResponseEntity<?> create(@RequestBody Order order) {
+    public ResponseEntity<?> create(@RequestBody Order order) throws InterruptedException {
         orderService.createOrder(order);
         return ResponseEntity.noContent().build();
     }
