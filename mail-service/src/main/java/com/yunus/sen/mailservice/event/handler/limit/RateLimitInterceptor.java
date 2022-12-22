@@ -1,6 +1,5 @@
 package com.yunus.sen.mailservice.event.handler.limit;
 
-import com.yunus.sen.commonsservice.Event;
 import com.yunus.sen.commonsservice.dto.OrderEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

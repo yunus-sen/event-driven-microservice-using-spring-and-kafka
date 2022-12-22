@@ -1,11 +1,9 @@
 package com.yunus.sen.mailservice.event.handler;
 
-import com.yunus.sen.commonsservice.Event;
 import com.yunus.sen.commonsservice.dto.OrderEvent;
 import com.yunus.sen.mailservice.service.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.errors.SerializationException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.DltHandler;
@@ -41,10 +39,13 @@ public class MailSenderEventHandler {
     )
     public void handleSendMessageEvent(OrderEvent orderEvent, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
 
-
-        if(orderEvent.getCounter()==5)
-            throw new RuntimeException();
         //mailService.send(orderEvent);
+
+        if (orderEvent.getCounter() == 5)
+            throw new RuntimeException();
+
+        if(orderEvent.getCounter()==10)
+            throw new SerializationException();
 
         log.info("consumner: {}", orderEvent.getCounter());
     }

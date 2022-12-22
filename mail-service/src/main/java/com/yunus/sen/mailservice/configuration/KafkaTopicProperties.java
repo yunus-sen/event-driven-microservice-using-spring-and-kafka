@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @Data
-@ConfigurationProperties(prefix ="kafka.topics" )
+@ConfigurationProperties(prefix = "kafka.topics")
 public class KafkaTopicProperties {
     private String mail;
 }
